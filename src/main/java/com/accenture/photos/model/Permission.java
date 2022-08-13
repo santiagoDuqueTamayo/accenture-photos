@@ -1,24 +1,23 @@
 package com.accenture.photos.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.NoArgsConstructor;
+import com.accenture.photos.model.enums.TypePermission;
+import lombok.*;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Album {
-
+public class Permission {
     @Id
     @GeneratedValue (strategy = GenerationType.AUTO)
     private Long id;
     private Long userId;
-    private String title;
-    @OneToMany
-    private List<Photo> albums;
+    private Long albumId;
+    @Enumerated(EnumType.STRING)
+    private TypePermission typePermission;
 
 }

@@ -1,5 +1,6 @@
 package com.accenture.photos.model;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -11,6 +12,7 @@ import javax.persistence.Id;
 @Entity
 @Getter
 @Setter
+@Builder
 public class Company {
 
     @Id

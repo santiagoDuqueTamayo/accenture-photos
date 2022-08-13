@@ -1,5 +1,6 @@
 package com.accenture.photos.proxy;
 
+import com.accenture.photos.DTO.PhotoDTO;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 
@@ -9,5 +10,5 @@ import java.util.List;
 public interface CallToPhotsInfoService {
 
     @GetMapping(value = "/photos")
-    List<Object> getPhotos();
+    List<PhotoDTO> getPhotos();
 }
