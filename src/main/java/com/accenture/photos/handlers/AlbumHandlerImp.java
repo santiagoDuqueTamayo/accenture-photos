@@ -9,9 +9,11 @@ import com.accenture.photos.model.Permission;
 import com.accenture.photos.repositories.interfaces.ManageAlbumRepository;
 import com.accenture.photos.repositories.interfaces.ManagePermissionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class AlbumHandlerImp implements AlbumHandler {
 
     @Autowired

@@ -6,10 +6,13 @@ import com.accenture.photos.repositories.interfaces.ManagePermissionRepository;
 import com.accenture.photos.repositories.interfaces.PermissionReposiory;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Service
 public class ManagePermissionRepositoryImpl implements ManagePermissionRepository {
 
     @Autowired
@@ -17,6 +20,11 @@ public class ManagePermissionRepositoryImpl implements ManagePermissionRepositor
 
     @Autowired
     PermissionReposiory permissionReposiory;
+
+    @Bean
+    ModelMapper modelMapperPermission() {
+        return new ModelMapper();
+    }
 
     @Override
     public List<Permission> savePermissions(List<PermissionDTO> permissionsDTO) {

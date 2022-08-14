@@ -25,9 +25,10 @@ public class User {
     private String webSite;
     @ManyToOne
     private Company company;
-    @OneToMany
+    @ManyToMany
     private List<Album> albums;
     @OneToMany
+    @JoinColumn(name = "userId")
     private List<Post> posts;
 
 }

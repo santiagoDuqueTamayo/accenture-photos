@@ -1,8 +1,6 @@
 package com.accenture.photos.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.List;
@@ -11,6 +9,8 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@Getter
+@Setter
 @Table(name="ALBUM")
 public class Album {
 
@@ -20,6 +20,7 @@ public class Album {
     private Long userId;
     private String title;
     @OneToMany
+    @JoinColumn(name = "albumId")
     private List<Photo> albums;
 
 }

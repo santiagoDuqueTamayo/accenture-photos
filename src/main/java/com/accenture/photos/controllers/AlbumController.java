@@ -15,6 +15,7 @@ public class AlbumController {
 
     @PostMapping(value = "/albums-permissions")
     public String createAlbum(@RequestBody AlbumWithPermissionDTO albumWithPermissionDTO) {
+      //TODO arreglar el mapeo de los json para que sea con nombres separados por _
        String respuesta =  albumHandler.splitDtoByEntity(albumWithPermissionDTO);
        return respuesta;
     }
