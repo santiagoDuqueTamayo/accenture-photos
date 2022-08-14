@@ -11,6 +11,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@Table(name="PERMISSION")
 public class Permission {
     @Id
     @GeneratedValue (strategy = GenerationType.AUTO)
