@@ -2,14 +2,14 @@ package com.accenture.photos.handler.impl;
 
 import com.accenture.photos.DTO.AlbumDTO;
 import com.accenture.photos.DTO.AlbumWithPermissionDTO;
-import com.accenture.photos.utility.ApiResponse;
-import com.accenture.photos.utility.HttpStatusResponse;
-import com.accenture.photos.utility.Notification;
+import com.accenture.photos.DTO.UserDTO;
 import com.accenture.photos.handler.AlbumHandler;
 import com.accenture.photos.model.Permission;
 import com.accenture.photos.repository.ManageAlbumRepository;
 import com.accenture.photos.repository.ManagePermissionRepository;
-
+import com.accenture.photos.utility.ApiResponse;
+import com.accenture.photos.utility.HttpStatusResponse;
+import com.accenture.photos.utility.Notification;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,6 +23,8 @@ public class AlbumHandlerImp implements AlbumHandler {
 
     @Autowired
     ManagePermissionRepository managePermissionRepository;
+
+
 
     @Override
     public ApiResponse splitDtoByEntity(AlbumWithPermissionDTO albumWithPermissionDTO) {
@@ -40,6 +42,12 @@ public class AlbumHandlerImp implements AlbumHandler {
         return userHasPermission ? managePermissionSuccessfulResponse(albumId) :
                 new ApiResponse(buildNotificationResponse(HttpStatusResponse.UNAUTHORIZED));
 
+    }
+
+
+    @Override
+    public void saveAlbums(List<AlbumDTO> albums) {
+        manageAlbumRepository.saveAlbums(albums);
     }
 
     private ApiResponse managePermissionSuccessfulResponse(Long albumId) {
@@ -85,4 +93,6 @@ public class AlbumHandlerImp implements AlbumHandler {
                 build();
         return albumToSend;
     }
+
+
 }

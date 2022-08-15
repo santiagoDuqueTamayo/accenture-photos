@@ -1,18 +1,25 @@
 package com.accenture.photos.controller;
 
+import com.accenture.photos.DTO.AlbumDTO;
 import com.accenture.photos.DTO.AlbumWithPermissionDTO;
-import com.accenture.photos.DTO.PermissionDTO;
-import com.accenture.photos.utility.ApiResponse;
+import com.accenture.photos.DTO.UserDTO;
 import com.accenture.photos.handler.AlbumHandler;
+import com.accenture.photos.proxy.CallToAlbumsInfoService;
+import com.accenture.photos.utility.ApiResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 public class AlbumController {
 
     @Autowired
-    AlbumHandler albumHandler;
+    private  AlbumHandler albumHandler;
+
+    @Autowired
+    private CallToAlbumsInfoService callToAlbumsInfoService;
 
     @PostMapping(value = "/albums-permissions")
     public ResponseEntity<ApiResponse> createAlbum(@RequestBody AlbumWithPermissionDTO albumWithPermissionDTO) {
@@ -29,4 +36,7 @@ public class AlbumController {
         return  new ResponseEntity<>(albumResponse,
                 albumResponse.getNotification().getHttpStatus());
     }
+
+
+    public List<AlbumDTO> getAlbums() {return callToAlbumsInfoService.getAlbums();}
 }

@@ -1,7 +1,9 @@
 package com.accenture.photos.repository.impl;
 
 import com.accenture.photos.DTO.AlbumDTO;
+import com.accenture.photos.DTO.UserDTO;
 import com.accenture.photos.model.Album;
+import com.accenture.photos.model.User;
 import com.accenture.photos.repository.AlbumRepository;
 import com.accenture.photos.repository.ManageAlbumRepository;
 import org.modelmapper.ModelMapper;
@@ -10,21 +12,20 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 @Service
 public class ManageAlbumRepositoryImpl  implements ManageAlbumRepository {
 
-    @Autowired
-    @Lazy
-    ModelMapper modelMapper;
+    ModelMapper modelMapper = new ModelMapper();
 
     @Autowired
     AlbumRepository albumRepository;
 
     @Bean
-    ModelMapper modelMapper() {
+    ModelMapper modelMapperAlbum() {
         return new ModelMapper();
     }
 
@@ -48,5 +49,19 @@ public class ManageAlbumRepositoryImpl  implements ManageAlbumRepository {
             throw new Exception();
         }
         return albumToReturn;
+    }
+
+    @Override
+    public void saveAlbums(List<AlbumDTO> albums) {
+        List<Album> listAlbumToSave = mapListAlbumDTOTOAlbumEntity(albums);
+        albumRepository.saveAll(listAlbumToSave);
+    }
+
+    private List<Album> mapListAlbumDTOTOAlbumEntity(List<AlbumDTO> listAlbumsDTOToSave) {
+        List<Album> listAlbumToSave = new ArrayList<>();
+        listAlbumsDTOToSave.forEach(albumDTO -> {
+            listAlbumToSave.add(modelMapper.map(albumDTO, Album.class));
+        });
+        return listAlbumToSave;
     }
 }

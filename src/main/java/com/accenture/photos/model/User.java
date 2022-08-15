@@ -19,15 +19,15 @@ public class User {
     private String name;
     private String userName;
     private String email;
-    @ManyToOne
+    @ManyToOne (cascade=CascadeType.ALL)
     private Address adress;
     private String phone;
     private String webSite;
-    @ManyToOne
+    @ManyToOne (cascade=CascadeType.ALL)
     private Company company;
     @ManyToMany
     private List<Album> albums;
-    @OneToMany
+    @OneToMany(cascade=CascadeType.ALL)
     @JoinColumn(name = "userId")
     private List<Post> posts;
 

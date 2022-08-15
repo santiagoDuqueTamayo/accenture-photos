@@ -15,8 +15,7 @@ import java.util.List;
 @Service
 public class ManagePermissionRepositoryImpl implements ManagePermissionRepository {
 
-    @Autowired
-    ModelMapper modelMapper;
+    ModelMapper modelMapper = new ModelMapper();
 
     @Autowired
     PermissionReposiory permissionReposiory;
@@ -25,10 +24,7 @@ public class ManagePermissionRepositoryImpl implements ManagePermissionRepositor
     private static final Boolean USER_PERMISSION_UPDATE = Boolean.TRUE;
 
 
-    @Bean
-    ModelMapper modelMapperPermission() {
-        return new ModelMapper();
-    }
+
 
     @Override
     public List<Permission> savePermissions(List<com.accenture.photos.DTO.PermissionDTO> permissionsDTO) {
