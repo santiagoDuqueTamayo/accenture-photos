@@ -17,4 +17,8 @@ public interface PermissionReposiory extends JpaRepository<Permission, Long> {
     @Query(value = "SELECT * FROM Permission p where p.TYPE_PERMISSION=:typePermission And p.ALBUM_ID=:albumId",
             nativeQuery = true)
     List<Permission> getUsersByTypePermission(@Param("typePermission") TypePermission typePermission, @Param("albumId") Long albumId);
+
+    @Query(value = "SELECT * FROM Permission p where p.USER_ID=:userId And p.ALBUM_ID=:albumId",
+            nativeQuery = true)
+    Permission verifyPermissionUser(@Param("userId") Long userId, @Param("albumId") Long albumId);
 }

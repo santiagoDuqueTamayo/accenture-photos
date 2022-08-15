@@ -10,6 +10,9 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+import java.util.Optional;
+
 @Service
 public class ManageAlbumRepositoryImpl  implements ManageAlbumRepository {
 
@@ -31,6 +34,19 @@ public class ManageAlbumRepositoryImpl  implements ManageAlbumRepository {
         //TODO probar si salta la excepción cuando venga nulo el objeto
         Album albumToSave = albumRepository.save(album);
         AlbumDTO albumToReturn = modelMapper.map(albumToSave, AlbumDTO.class);
+        return albumToReturn;
+    }
+
+    @Override
+    public AlbumDTO getAlbumsAccordingPermission(Long albumId) throws Exception {
+        Optional<Album> albumToGet = albumRepository.findById(albumId);
+        AlbumDTO albumToReturn;
+        //TODO crear excepción personalizada para retornar
+        if(albumToGet.isPresent()) {
+            albumToReturn =  modelMapper.map(albumToGet.get(), AlbumDTO.class);
+        } else {
+            throw new Exception();
+        }
         return albumToReturn;
     }
 }

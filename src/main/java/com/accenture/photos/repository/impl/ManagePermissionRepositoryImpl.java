@@ -1,6 +1,5 @@
 package com.accenture.photos.repository.impl;
 
-import com.accenture.photos.DTO.PermissionDTO;
 import com.accenture.photos.model.Permission;
 import com.accenture.photos.model.enums.TypePermission;
 import com.accenture.photos.repository.ManagePermissionRepository;
@@ -32,7 +31,7 @@ public class ManagePermissionRepositoryImpl implements ManagePermissionRepositor
     }
 
     @Override
-    public List<Permission> savePermissions(List<PermissionDTO> permissionsDTO) {
+    public List<Permission> savePermissions(List<com.accenture.photos.DTO.PermissionDTO> permissionsDTO) {
         List<Permission> permissionsToSave = new ArrayList<>();
         mapPermissionsToPermissionsDTO(permissionsDTO, permissionsToSave);
         //TODO  validar los retornos
@@ -40,7 +39,7 @@ public class ManagePermissionRepositoryImpl implements ManagePermissionRepositor
     }
 
     @Override
-    public Boolean updateUserPermission(PermissionDTO permissionDTO) {
+    public Boolean updateUserPermission(com.accenture.photos.DTO.PermissionDTO permissionDTO) {
         Permission permission = permissionReposiory.
                 findPermissionByAlbumIdAndUserId(permissionDTO.getUserId(),
                         permissionDTO.getAlbumId());
@@ -49,7 +48,7 @@ public class ManagePermissionRepositoryImpl implements ManagePermissionRepositor
     }
 
     @Override
-    public List<PermissionDTO> getUserByTypePermission(PermissionDTO permissionDTO) {
+    public List<com.accenture.photos.DTO.PermissionDTO> getUserByTypePermission(com.accenture.photos.DTO.PermissionDTO permissionDTO) {
 
         List<Permission> gotPermissionsList = permissionReposiory.
                 getUsersByTypePermission(TypePermission.valueOf(permissionDTO.getTypePermission()),
@@ -58,22 +57,29 @@ public class ManagePermissionRepositoryImpl implements ManagePermissionRepositor
         return mapListPermissionToPermissionDTO(gotPermissionsList, permissionDTO);
     }
 
-    private List<PermissionDTO> mapListPermissionToPermissionDTO(List<Permission> gotPermissionsList,
-                                                                 PermissionDTO permissionDTO) {
-        List<PermissionDTO> permissionDTOSToReturn = new ArrayList<>();
+    @Override
+    public Boolean verifyPermissionUser(Long userId, Long albumId) {
+        Permission UserPermission = permissionReposiory.verifyPermissionUser(userId, albumId);
+        Boolean hasPermission = Boolean.TRUE;
+        return UserPermission != null ? hasPermission : !hasPermission;
+    }
+
+    private List<com.accenture.photos.DTO.PermissionDTO> mapListPermissionToPermissionDTO(List<Permission> gotPermissionsList,
+                                                                                          com.accenture.photos.DTO.PermissionDTO permissionDTO) {
+        List<com.accenture.photos.DTO.PermissionDTO> permissionDTOSToReturn = new ArrayList<>();
         gotPermissionsList.forEach(permission -> {
-            permissionDTOSToReturn.add(modelMapper.map(permission, PermissionDTO.class));
+            permissionDTOSToReturn.add(modelMapper.map(permission, com.accenture.photos.DTO.PermissionDTO.class));
         });
         return permissionDTOSToReturn;
     }
 
-    private Boolean isSetTypePermission(PermissionDTO permissionDTO, Permission permission) {
+    private Boolean isSetTypePermission(com.accenture.photos.DTO.PermissionDTO permissionDTO, Permission permission) {
         permission.setTypePermission(TypePermission.valueOf(permissionDTO.getTypePermission()));
         permissionReposiory.save(permission);
         return USER_PERMISSION_UPDATE;
     }
 
-    private void mapPermissionsToPermissionsDTO(List<PermissionDTO> permissionsDTO, List<Permission> permissionsToSave) {
+    private void mapPermissionsToPermissionsDTO(List<com.accenture.photos.DTO.PermissionDTO> permissionsDTO, List<Permission> permissionsToSave) {
         permissionsDTO.forEach(permissionDTO -> {
             permissionsToSave.add(modelMapper.map(permissionDTO, Permission.class));
         });

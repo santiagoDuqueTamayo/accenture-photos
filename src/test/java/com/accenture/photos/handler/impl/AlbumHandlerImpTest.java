@@ -2,7 +2,6 @@ package com.accenture.photos.handler.impl;
 
 import com.accenture.photos.DTO.AlbumDTO;
 import com.accenture.photos.DTO.AlbumWithPermissionDTO;
-import com.accenture.photos.DTO.PermissionDTO;
 import com.accenture.photos.model.Permission;
 import com.accenture.photos.model.enums.TypePermission;
 import com.accenture.photos.repository.ManageAlbumRepository;
@@ -13,10 +12,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.mock.mockito.MockBean;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -69,13 +65,13 @@ class AlbumHandlerImpTest {
 
     private AlbumWithPermissionDTO createAlbumWithManyPermissionsDTO() {
 
-        List<PermissionDTO> listPermissionToSave = new ArrayList<>();
-        PermissionDTO permissionToSaveUser1 = PermissionDTO.builder().
+        List<com.accenture.photos.DTO.PermissionDTO> listPermissionToSave = new ArrayList<>();
+        com.accenture.photos.DTO.PermissionDTO permissionToSaveUser1 = com.accenture.photos.DTO.PermissionDTO.builder().
                 userId(1l).
                 albumId(1l).
                 typePermission("WRITE").
                 build();
-        PermissionDTO permissionToSaveUser2 = PermissionDTO.builder().
+        com.accenture.photos.DTO.PermissionDTO permissionToSaveUser2 = com.accenture.photos.DTO.PermissionDTO.builder().
                 userId(2l).
                 albumId(1l).
                 typePermission("WRITE").
@@ -94,8 +90,8 @@ class AlbumHandlerImpTest {
 
     private AlbumWithPermissionDTO createAlbumWithPermissionsDTO() {
 
-        List<PermissionDTO> listPermissionToSave = new ArrayList<>();
-        PermissionDTO permissionToSave = PermissionDTO.builder().
+        List<com.accenture.photos.DTO.PermissionDTO> listPermissionToSave = new ArrayList<>();
+        com.accenture.photos.DTO.PermissionDTO permissionToSave = com.accenture.photos.DTO.PermissionDTO.builder().
                 userId(1l).
                 albumId(1l).
                 typePermission("WRITE").
