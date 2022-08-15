@@ -1,7 +1,7 @@
 package com.accenture.photos.controller;
 
 import com.accenture.photos.DTO.PermissionDTO;
-import com.accenture.photos.error.ApiResponse;
+import com.accenture.photos.utility.ApiResponse;
 import com.accenture.photos.handler.PermissionHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

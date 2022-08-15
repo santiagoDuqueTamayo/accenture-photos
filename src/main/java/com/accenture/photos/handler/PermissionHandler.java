@@ -1,8 +1,7 @@
 package com.accenture.photos.handler;
 
-import com.accenture.photos.DTO.AlbumWithPermissionDTO;
 import com.accenture.photos.DTO.PermissionDTO;
-import com.accenture.photos.error.ApiResponse;
+import com.accenture.photos.utility.ApiResponse;
 
 public interface PermissionHandler {
 

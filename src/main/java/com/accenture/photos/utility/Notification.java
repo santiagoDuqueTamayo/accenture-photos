@@ -1,4 +1,4 @@
-package com.accenture.photos.error;
+package com.accenture.photos.utility;
 
 import lombok.*;
 import org.springframework.http.HttpStatus;

@@ -1,10 +1,9 @@
 package com.accenture.photos.handler.impl;
 
-import com.accenture.photos.DTO.AlbumWithPermissionDTO;
 import com.accenture.photos.DTO.PermissionDTO;
-import com.accenture.photos.error.ApiResponse;
-import com.accenture.photos.error.HttpStatusResponse;
-import com.accenture.photos.error.Notification;
+import com.accenture.photos.utility.ApiResponse;
+import com.accenture.photos.utility.HttpStatusResponse;
+import com.accenture.photos.utility.Notification;
 import com.accenture.photos.handler.PermissionHandler;
 import com.accenture.photos.repository.ManagePermissionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
