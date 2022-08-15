@@ -36,7 +36,7 @@ public class ManagePermissionRepositoryImpl implements ManagePermissionRepositor
         List<Permission> permissionsToSave = new ArrayList<>();
         mapPermissionsToPermissionsDTO(permissionsDTO, permissionsToSave);
         //TODO  validar los retornos
-        return  permissionReposiory.saveAll(permissionsToSave);
+        return permissionReposiory.saveAll(permissionsToSave);
     }
 
     @Override
@@ -46,6 +46,25 @@ public class ManagePermissionRepositoryImpl implements ManagePermissionRepositor
                         permissionDTO.getAlbumId());
         return permission != null ? isSetTypePermission(permissionDTO, permission) : USER_AND_ALBUM_NOT_FOUND;
 
+    }
+
+    @Override
+    public List<PermissionDTO> getUserByTypePermission(PermissionDTO permissionDTO) {
+
+        List<Permission> gotPermissionsList = permissionReposiory.
+                getUsersByTypePermission(TypePermission.valueOf(permissionDTO.getTypePermission()),
+                        permissionDTO.getAlbumId());
+
+        return mapListPermissionToPermissionDTO(gotPermissionsList, permissionDTO);
+    }
+
+    private List<PermissionDTO> mapListPermissionToPermissionDTO(List<Permission> gotPermissionsList,
+                                                                 PermissionDTO permissionDTO) {
+        List<PermissionDTO> permissionDTOSToReturn = new ArrayList<>();
+        gotPermissionsList.forEach(permission -> {
+            permissionDTOSToReturn.add(modelMapper.map(permission, PermissionDTO.class));
+        });
+        return permissionDTOSToReturn;
     }
 
     private Boolean isSetTypePermission(PermissionDTO permissionDTO, Permission permission) {

@@ -11,4 +11,5 @@ public interface ManagePermissionRepository {
 
     Boolean updateUserPermission(PermissionDTO permissionDTO);
 
+    List<PermissionDTO> getUserByTypePermission(PermissionDTO permissionDTO);
 }
