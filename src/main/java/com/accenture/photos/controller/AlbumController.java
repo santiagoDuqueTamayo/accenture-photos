@@ -2,7 +2,7 @@ package com.accenture.photos.controller;
 
 import com.accenture.photos.DTO.AlbumWithPermissionDTO;
 import com.accenture.photos.error.ApiResponse;
-import com.accenture.photos.handler.interfaces.AlbumHandler;
+import com.accenture.photos.handler.AlbumHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,6 +20,6 @@ public class AlbumController {
       //TODO arreglar el mapeo de los json para que sea con nombres separados por _
        ApiResponse responseAlbum =  albumHandler.splitDtoByEntity(albumWithPermissionDTO);
        return new ResponseEntity<>(responseAlbum,
-               responseAlbum.getHttpStatusResponse().getHttpStatus());
+               responseAlbum.getNotification().getHttpStatus());
     }
 }

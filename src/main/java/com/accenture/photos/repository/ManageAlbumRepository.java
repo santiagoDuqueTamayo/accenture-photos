@@ -1,4 +1,4 @@
-package com.accenture.photos.repository.interfaces;
+package com.accenture.photos.repository;
 
 import com.accenture.photos.DTO.AlbumDTO;
 

@@ -10,6 +10,10 @@ import lombok.*;
 public class ApiResponse<T> {
 
     private  T response;
-    private HttpStatusResponse httpStatusResponse;
+    private Notification notification;
+
+    public ApiResponse(Notification notification) {
+        this.notification = notification;
+    }
 
 }

@@ -6,7 +6,8 @@ import org.springframework.http.HttpStatus;
 
 @Getter
 public enum HttpStatusResponse {
-    CREATED("Elemento creado correctamente", HttpStatus.CREATED);
+    CREATED("Elemento creado o actualizado correctamente", HttpStatus.CREATED),
+    FAIL("Fallo al crear o actualizar el elemento", HttpStatus.NOT_FOUND);
 
     private String description;
     private HttpStatus httpStatus;

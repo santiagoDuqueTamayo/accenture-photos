@@ -1,9 +1,9 @@
-package com.accenture.photos.repository;
+package com.accenture.photos.repository.impl;
 
 import com.accenture.photos.DTO.AlbumDTO;
 import com.accenture.photos.model.Album;
-import com.accenture.photos.repository.interfaces.AlbumRepository;
-import com.accenture.photos.repository.interfaces.ManageAlbumRepository;
+import com.accenture.photos.repository.AlbumRepository;
+import com.accenture.photos.repository.ManageAlbumRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;

@@ -1,14 +1,15 @@
-package com.accenture.photos.handler;
+package com.accenture.photos.handler.impl;
 
 import com.accenture.photos.DTO.AlbumDTO;
 import com.accenture.photos.DTO.AlbumWithPermissionDTO;
 import com.accenture.photos.DTO.PermissionDTO;
 import com.accenture.photos.error.ApiResponse;
 import com.accenture.photos.error.HttpStatusResponse;
-import com.accenture.photos.handler.interfaces.AlbumHandler;
+import com.accenture.photos.error.Notification;
+import com.accenture.photos.handler.AlbumHandler;
 import com.accenture.photos.model.Permission;
-import com.accenture.photos.repository.interfaces.ManageAlbumRepository;
-import com.accenture.photos.repository.interfaces.ManagePermissionRepository;
+import com.accenture.photos.repository.ManageAlbumRepository;
+import com.accenture.photos.repository.ManagePermissionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -33,9 +34,14 @@ public class AlbumHandlerImp implements AlbumHandler {
     }
 
     private ApiResponse createResponse(AlbumDTO albumWasSaved) {
+        Notification notification = Notification.builder().description(
+                HttpStatusResponse.CREATED.getDescription()).
+                httpStatus(HttpStatusResponse.CREATED.getHttpStatus()).
+                build();
+
         ApiResponse apiToReturn = ApiResponse.builder().
                 response(albumWasSaved).
-                httpStatusResponse(HttpStatusResponse.CREATED).
+                notification(notification).
                 build();
         return apiToReturn;
     }
