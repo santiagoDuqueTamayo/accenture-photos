@@ -1,4 +1,4 @@
-package com.accenture.photos.repository;
+package com.accenture.photos.repository.JPARepository;
 
 import com.accenture.photos.model.Album;
 import org.springframework.data.jpa.repository.JpaRepository;

@@ -2,7 +2,6 @@ package com.accenture.photos.controller;
 
 import com.accenture.photos.DTO.AlbumDTO;
 import com.accenture.photos.DTO.AlbumWithPermissionDTO;
-import com.accenture.photos.DTO.UserDTO;
 import com.accenture.photos.handler.AlbumHandler;
 import com.accenture.photos.proxy.CallToAlbumsInfoService;
 import com.accenture.photos.utility.ApiResponse;

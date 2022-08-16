@@ -3,11 +3,9 @@ package com.accenture.photos.repository.impl;
 import com.accenture.photos.DTO.UserDTO;
 import com.accenture.photos.model.User;
 import com.accenture.photos.repository.ManageUserRepository;
-import com.accenture.photos.repository.UserRepository;
+import com.accenture.photos.repository.JPARepository.UserRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;

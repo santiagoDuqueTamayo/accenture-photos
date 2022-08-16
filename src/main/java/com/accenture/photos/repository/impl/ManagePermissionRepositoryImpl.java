@@ -3,10 +3,9 @@ package com.accenture.photos.repository.impl;
 import com.accenture.photos.model.Permission;
 import com.accenture.photos.model.enums.TypePermission;
 import com.accenture.photos.repository.ManagePermissionRepository;
-import com.accenture.photos.repository.PermissionReposiory;
+import com.accenture.photos.repository.JPARepository.PermissionReposiory;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
